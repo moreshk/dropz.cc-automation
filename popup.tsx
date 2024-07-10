@@ -1,3 +1,4 @@
+import React from "react"
 import { useRef, useState } from "react"
 
 function getRandomPhrase() {
@@ -70,26 +71,31 @@ function IndexPopup() {
     })
   }
 
+  function getRandomTime(baseTime, variance) {
+    return baseTime + Math.floor(Math.random() * (variance * 2 + 1)) - variance
+  }
+
   function runSequence() {
     openCommentModal()
     setTimeout(() => {
       fillTextArea()
-    }, 1000)
+    }, getRandomTime(1000, 2000)) // 1 to 3 seconds
     setTimeout(() => {
       postComment()
-    }, 5000)
+    }, getRandomTime(5000, 2000)) // 3 to 7 seconds
     setTimeout(() => {
       goToBoard()
-    }, 9000)
+    }, getRandomTime(9000, 2000)) // 7 to 11 seconds
     setTimeout(() => {
       gotoFirstTokenLink()
-    }, 15000)
+    }, getRandomTime(15000, 2000)) // 13 to 17 seconds
   }
+
   const startAutomation = () => {
     if (!isRunning) {
       setIsRunning(true)
-      intervalRef.current = setInterval(runSequence, 60000)
-      // Run the sequence immediately when automation starts
+      const intervalTime = getRandomTime(60000, 1000) // 59 to 61 seconds
+      intervalRef.current = setInterval(runSequence, intervalTime)
       runSequence()
     }
   }
