@@ -65,7 +65,7 @@ function clickFirstTokenLink() {
   // Find the first anchor tag that matches the pattern
   const allAnchors = Array.from(document.getElementsByTagName("a"))
 
-  const boardLink = allAnchors[10]
+  const boardLink = allAnchors[11]
 
   if (boardLink) {
     ;(boardLink as HTMLAnchorElement).click()

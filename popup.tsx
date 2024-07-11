@@ -76,25 +76,28 @@ function IndexPopup() {
   }
 
   function runSequence() {
-    openCommentModal()
+    gotoFirstTokenLink()
+    
+    setTimeout(() => {
+      openCommentModal()
+    }, getRandomTime(5000, 2000)) // 1 to 3 seconds
     setTimeout(() => {
       fillTextArea()
-    }, getRandomTime(1000, 2000)) // 1 to 3 seconds
+    }, getRandomTime(9000, 2000)) // 3 to 7 seconds
     setTimeout(() => {
       postComment()
-    }, getRandomTime(5000, 2000)) // 3 to 7 seconds
+    }, getRandomTime(15000, 2000)) // 7 to 11 seconds
     setTimeout(() => {
       goToBoard()
-    }, getRandomTime(9000, 2000)) // 7 to 11 seconds
-    setTimeout(() => {
-      gotoFirstTokenLink()
-    }, getRandomTime(15000, 2000)) // 13 to 17 seconds
+    }, getRandomTime(17000, 2000)) // 13 to 17 seconds
+   
+    
   }
 
   const startAutomation = () => {
     if (!isRunning) {
       setIsRunning(true)
-      const intervalTime = getRandomTime(60000, 1000) // 59 to 61 seconds
+      const intervalTime = getRandomTime(100000, 5000) // 59 to 61 seconds
       intervalRef.current = setInterval(runSequence, intervalTime)
       runSequence()
     }
@@ -134,19 +137,19 @@ function IndexPopup() {
         }}>
         All Auto in one Click
       </button>
-      <button disabled={!isRunning} onClick={openCommentModal}>
+      <button disabled={!!isRunning} onClick={openCommentModal}>
         Open Comment Modal
       </button>
-      <button disabled={!isRunning} onClick={fillTextArea}>
+      <button disabled={!!isRunning} onClick={fillTextArea}>
         Fill Textarea
       </button>
-      <button disabled={!isRunning} onClick={postComment}>
+      <button disabled={!!isRunning} onClick={postComment}>
         Post Comment
       </button>
-      <button disabled={!isRunning} onClick={goToBoard}>
+      <button disabled={!!isRunning} onClick={goToBoard}>
         Post Comment
       </button>
-      <button disabled={!isRunning} onClick={gotoFirstTokenLink}>
+      <button disabled={!!isRunning} onClick={gotoFirstTokenLink}>
         Go to First token
       </button>
       {message}
